@@ -1,6 +1,12 @@
 `include "srlatch.v"
 
-module d_latch (input d, input e, output q, output notq);
+module d_latch
+(
+    input d,
+    input e,
+    output q,
+    output notq
+);
     
     wire r; 
     wire s;
