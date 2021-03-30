@@ -1,0 +1,129 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 10;
+:vpi_module "C:\Iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\Iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\Iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\Iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\Iverilog\lib\ivl\va_math.vpi";
+S_0000022f3fafb4b0 .scope module, "test_d_flip_flop" "test_d_flip_flop" 2 3;
+ .timescale -9 -10;
+v0000022f3fda4330_0 .var "d", 0 0;
+v0000022f3fda5410_0 .var "e", 0 0;
+v0000022f3fda50f0_0 .net "notq", 0 0, L_0000022f3fda6df0;  1 drivers
+v0000022f3fda5230_0 .net "q", 0 0, L_0000022f3fd499a0;  1 drivers
+S_0000022f3fafb640 .scope module, "d_flip_flop" "d_flip_flop" 2 19, 3 3 0, S_0000022f3fafb4b0;
+ .timescale -9 -10;
+    .port_info 0 /INPUT 1 "d";
+    .port_info 1 /INPUT 1 "e";
+    .port_info 2 /OUTPUT 1 "q";
+    .port_info 3 /OUTPUT 1 "notq";
+L_0000022f3fd49700 .functor NOT 1, v0000022f3fda5410_0, C4<0>, C4<0>, C4<0>;
+L_0000022f3fd49770 .functor BUFZ 1, L_0000022f3fd49620, C4<0>, C4<0>, C4<0>;
+L_0000022f3fd49850 .functor BUFZ 1, v0000022f3fda5410_0, C4<0>, C4<0>, C4<0>;
+v0000022f3fd548c0_0 .net "d", 0 0, v0000022f3fda4330_0;  1 drivers
+v0000022f3fd54aa0_0 .net "d_slave", 0 0, L_0000022f3fd49770;  1 drivers
+v0000022f3fd54a00_0 .net "e", 0 0, v0000022f3fda5410_0;  1 drivers
+v0000022f3fd54b40_0 .net "e_slave", 0 0, L_0000022f3fd49850;  1 drivers
+v0000022f3fd54c80_0 .net "not_e", 0 0, L_0000022f3fd49700;  1 drivers
+v0000022f3fd54d20_0 .net "notq", 0 0, L_0000022f3fda6df0;  alias, 1 drivers
+v0000022f3fda3ed0_0 .net "notq_master", 0 0, L_0000022f3fd49a10;  1 drivers
+v0000022f3fda5370_0 .net "q", 0 0, L_0000022f3fd499a0;  alias, 1 drivers
+v0000022f3fda48d0_0 .net "q_master", 0 0, L_0000022f3fd49620;  1 drivers
+S_0000022f3fafb7d0 .scope module, "d_latch_master" "d_latch" 3 10, 4 3 0, S_0000022f3fafb640;
+ .timescale -9 -10;
+    .port_info 0 /INPUT 1 "d";
+    .port_info 1 /INPUT 1 "e";
+    .port_info 2 /OUTPUT 1 "q";
+    .port_info 3 /OUTPUT 1 "notq";
+L_0000022f3fd49b60 .functor AND 1, v0000022f3fda4330_0, L_0000022f3fd49700, C4<1>, C4<1>;
+L_0000022f3fd49af0 .functor AND 1, L_0000022f3fd495b0, L_0000022f3fd49700, C4<1>, C4<1>;
+L_0000022f3fd495b0 .functor NOT 1, v0000022f3fda4330_0, C4<0>, C4<0>, C4<0>;
+v0000022f3fd54500_0 .net *"_ivl_2", 0 0, L_0000022f3fd495b0;  1 drivers
+v0000022f3fd540a0_0 .net "d", 0 0, v0000022f3fda4330_0;  alias, 1 drivers
+v0000022f3fd545a0_0 .net "e", 0 0, L_0000022f3fd49700;  alias, 1 drivers
+v0000022f3fd53e20_0 .net "notq", 0 0, L_0000022f3fd49a10;  alias, 1 drivers
+v0000022f3fd541e0_0 .net "q", 0 0, L_0000022f3fd49620;  alias, 1 drivers
+v0000022f3fd54000_0 .net "r", 0 0, L_0000022f3fd49af0;  1 drivers
+v0000022f3fd54640_0 .net "s", 0 0, L_0000022f3fd49b60;  1 drivers
+S_0000022f3fafd820 .scope module, "sr_latch" "sr_latch" 4 11, 5 1 0, S_0000022f3fafb7d0;
+ .timescale -9 -10;
+    .port_info 0 /INPUT 1 "s";
+    .port_info 1 /INPUT 1 "r";
+    .port_info 2 /OUTPUT 1 "q";
+    .port_info 3 /OUTPUT 1 "notq";
+L_0000022f3fd49620 .functor NOR 1, L_0000022f3fd49af0, L_0000022f3fd49a10, C4<0>, C4<0>;
+L_0000022f3fd49a10 .functor NOR 1, L_0000022f3fd49b60, L_0000022f3fd49620, C4<0>, C4<0>;
+v0000022f3fd4ba70_0 .net "notq", 0 0, L_0000022f3fd49a10;  alias, 1 drivers
+v0000022f3fafea00_0 .net "q", 0 0, L_0000022f3fd49620;  alias, 1 drivers
+v0000022f3fafd9b0_0 .net "r", 0 0, L_0000022f3fd49b60;  alias, 1 drivers
+v0000022f3fd53ec0_0 .net "s", 0 0, L_0000022f3fd49af0;  alias, 1 drivers
+S_0000022f3fd54de0 .scope module, "d_latch_slave" "d_latch" 3 15, 4 3 0, S_0000022f3fafb640;
+ .timescale -9 -10;
+    .port_info 0 /INPUT 1 "d";
+    .port_info 1 /INPUT 1 "e";
+    .port_info 2 /OUTPUT 1 "q";
+    .port_info 3 /OUTPUT 1 "notq";
+L_0000022f3fd498c0 .functor AND 1, L_0000022f3fd49770, L_0000022f3fd49850, C4<1>, C4<1>;
+L_0000022f3fd49930 .functor AND 1, L_0000022f3fd497e0, L_0000022f3fd49850, C4<1>, C4<1>;
+L_0000022f3fd497e0 .functor NOT 1, L_0000022f3fd49770, C4<0>, C4<0>, C4<0>;
+v0000022f3fd543c0_0 .net *"_ivl_2", 0 0, L_0000022f3fd497e0;  1 drivers
+v0000022f3fd54960_0 .net "d", 0 0, L_0000022f3fd49770;  alias, 1 drivers
+v0000022f3fd54460_0 .net "e", 0 0, L_0000022f3fd49850;  alias, 1 drivers
+v0000022f3fd54be0_0 .net "notq", 0 0, L_0000022f3fda6df0;  alias, 1 drivers
+v0000022f3fd546e0_0 .net "q", 0 0, L_0000022f3fd499a0;  alias, 1 drivers
+v0000022f3fd54780_0 .net "r", 0 0, L_0000022f3fd49930;  1 drivers
+v0000022f3fd54820_0 .net "s", 0 0, L_0000022f3fd498c0;  1 drivers
+S_0000022f3fafda50 .scope module, "sr_latch" "sr_latch" 4 11, 5 1 0, S_0000022f3fd54de0;
+ .timescale -9 -10;
+    .port_info 0 /INPUT 1 "s";
+    .port_info 1 /INPUT 1 "r";
+    .port_info 2 /OUTPUT 1 "q";
+    .port_info 3 /OUTPUT 1 "notq";
+L_0000022f3fd499a0 .functor NOR 1, L_0000022f3fd49930, L_0000022f3fda6df0, C4<0>, C4<0>;
+L_0000022f3fda6df0 .functor NOR 1, L_0000022f3fd498c0, L_0000022f3fd499a0, C4<0>, C4<0>;
+v0000022f3fd54320_0 .net "notq", 0 0, L_0000022f3fda6df0;  alias, 1 drivers
+v0000022f3fd54140_0 .net "q", 0 0, L_0000022f3fd499a0;  alias, 1 drivers
+v0000022f3fd54280_0 .net "r", 0 0, L_0000022f3fd498c0;  alias, 1 drivers
+v0000022f3fd53f60_0 .net "s", 0 0, L_0000022f3fd49930;  alias, 1 drivers
+    .scope S_0000022f3fafb4b0;
+T_0 ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000022f3fda4330_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000022f3fda5410_0, 0, 1;
+    %end;
+    .thread T_0;
+    .scope S_0000022f3fafb4b0;
+T_1 ;
+    %delay 13, 0;
+    %load/vec4 v0000022f3fda4330_0;
+    %inv;
+    %store/vec4 v0000022f3fda4330_0, 0, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0000022f3fafb4b0;
+T_2 ;
+    %delay 20, 0;
+    %load/vec4 v0000022f3fda5410_0;
+    %inv;
+    %store/vec4 v0000022f3fda5410_0, 0, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0000022f3fafb4b0;
+T_3 ;
+    %vpi_call 2 22 "$dumpvars" {0 0 0};
+    %vpi_call 2 23 "$display", "Test started..." {0 0 0};
+    %delay 160, 0;
+    %vpi_call 2 24 "$finish" {0 0 0};
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 6;
+    "N/A";
+    "<interactive>";
+    "test_dflipflop.v";
+    "dflipflop.v";
+    "./dlatch.v";
+    "./srlatch.v";

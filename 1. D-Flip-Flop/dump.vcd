@@ -1,0 +1,171 @@
+$date
+	Mon Feb 22 21:16:42 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module test_d_flip_flop $end
+$var wire 1 ! q $end
+$var wire 1 " notq $end
+$var reg 1 # d $end
+$var reg 1 $ e $end
+$scope module d_flip_flop $end
+$var wire 1 # d $end
+$var wire 1 % d_slave $end
+$var wire 1 $ e $end
+$var wire 1 & e_slave $end
+$var wire 1 ' not_e $end
+$var wire 1 ( q_master $end
+$var wire 1 ! q $end
+$var wire 1 ) notq_master $end
+$var wire 1 " notq $end
+$scope module d_latch_master $end
+$var wire 1 # d $end
+$var wire 1 ' e $end
+$var wire 1 * r $end
+$var wire 1 + s $end
+$var wire 1 ( q $end
+$var wire 1 ) notq $end
+$scope module sr_latch $end
+$var wire 1 ) notq $end
+$var wire 1 ( q $end
+$var wire 1 + r $end
+$var wire 1 * s $end
+$upscope $end
+$upscope $end
+$scope module d_latch_slave $end
+$var wire 1 % d $end
+$var wire 1 & e $end
+$var wire 1 , r $end
+$var wire 1 - s $end
+$var wire 1 ! q $end
+$var wire 1 " notq $end
+$scope module sr_latch $end
+$var wire 1 " notq $end
+$var wire 1 ! q $end
+$var wire 1 - r $end
+$var wire 1 , s $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0-
+0,
+1+
+0*
+0)
+1(
+1'
+0&
+1%
+0$
+1#
+x"
+x!
+$end
+#13
+1)
+0%
+0(
+1*
+0+
+0#
+#20
+1"
+0*
+0!
+0'
+1,
+1&
+1$
+#26
+1#
+#39
+0#
+#40
+1*
+1'
+0,
+0&
+0$
+#52
+1%
+1(
+0)
+0*
+1+
+1#
+#60
+1!
+0+
+0"
+0'
+1-
+1&
+1$
+#65
+0#
+#78
+1#
+#80
+1+
+1'
+0-
+0&
+0$
+#91
+1)
+0%
+0(
+1*
+0+
+0#
+#100
+1"
+0*
+0!
+0'
+1,
+1&
+1$
+#104
+1#
+#117
+0#
+#120
+1*
+1'
+0,
+0&
+0$
+#130
+1%
+1(
+0)
+0*
+1+
+1#
+#140
+1!
+0+
+0"
+0'
+1-
+1&
+1$
+#143
+0#
+#156
+1#
+#160
+1+
+1'
+0-
+0&
+0$
