@@ -1,6 +1,12 @@
 `include "dlatch.v"
 
-module d_flip_flop (input d, input e, output q, output notq);
+module d_flip_flop
+(
+    input d,
+    input e,
+    output q,
+    output notq
+);
     
     wire q_master; 
     wire notq_master;
