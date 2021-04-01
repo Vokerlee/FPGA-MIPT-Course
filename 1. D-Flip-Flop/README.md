@@ -19,5 +19,5 @@ Now everything is cool. Metastable state is excluded.
 
 But this scheme can get bit-information only by D signal. So to make the scheme to work by some clk signal the `D Flip-Flop` helps us. It is combined 2 `D Latch` schemes:
 
-<img src="https://yandex.ru/images/search?text=d%20flip%20flop%20схема&from=tabbar&p=5&pos=237&rpt=simage&img_url=https%3A%2F%2Fwww.researchgate.net%2Fpublication%2F268588476%2Ffigure%2Fdownload%2Ffig2%2FAS%3A355230110765056%401461704866050%2FMaster-slave-positive-edge-triggered-D-flip-flop-circuit-using-D-latches.png" alt="drawing" width="700"/>
+<img src="https://www.researchgate.net/publication/268588476/figure/fig2/AS:355230110765056@1461704866050/Master-slave-positive-edge-triggered-D-flip-flop-circuit-using-D-latches.png" alt="drawing" width="700"/>
 
