@@ -13,6 +13,6 @@ S is the set-signal, R is the reset signal. Q - the output signal. `SR Latch` is
 
 So the new scheme `D Latch` was created: 
 
-<img src="https://progi.pro/media/main/e0/89/d5/e089d5e9f10f9a271a412eb4a18cd62f.png" alt="drawing" width="600"/>
+<img src="https://free-images.com/or/6b6c/d_type_transparent_latch_0.jpg" alt="drawing" width="600"/>
 
 Now everything is cool. Metastable state is excluded. 
