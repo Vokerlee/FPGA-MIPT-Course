@@ -11,6 +11,8 @@ In short, here is it:
 
 S is the set-signal, R is the reset signal. Q - the output signal. `SR Latch` is used to store the bit of information. As we can see, when two input signal are equal to 1, the metastability appears - the next state of Q signal can be both 1 and 0. 
 
-So the new scheme `D Latch` was created.  
+So the new scheme `D Latch` was created: 
 
 <img src="https://vikkimekvmaster.files.wordpress.com/2017/10/screen-shot-2017-10-31-at-8-58-38-am.png" alt="drawing" width="600"/>
+
+Now everything is cool. E is enable-to-write signal.
