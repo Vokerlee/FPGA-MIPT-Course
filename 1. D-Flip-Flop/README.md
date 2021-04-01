@@ -16,3 +16,5 @@ So the new scheme `D Latch` was created:
 <img src="https://community.cadence.com/cfs-file/__key/telligent-evolution-components-attachments/00-27-00-00-00-03-00-42/04181.png" alt="drawing" width="700"/>
 
 Now everything is cool. Metastable state is excluded. 
+
+But this scheme can get bit-information only by D signal 
