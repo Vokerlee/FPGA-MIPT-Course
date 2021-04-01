@@ -8,3 +8,5 @@ First of all, `SR Latch` is considered to understand how it works.
 In short, here is it:
 
 ![name](https://steamuserimages-a.akamaihd.net/ugc/263836971403353556/F6AAAC5B777F2732937EB1D7FF96BCBA571C8486/)
+
+S is the set-signal, R is the reset signal. Q - the output signal.
