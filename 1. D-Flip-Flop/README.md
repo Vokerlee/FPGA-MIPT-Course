@@ -13,6 +13,6 @@ S is the set-signal, R is the reset signal. Q - the output signal. `SR Latch` is
 
 So the new scheme `D Latch` was created: 
 
-<img src="https://free-images.com/or/6b6c/d_type_transparent_latch_0.jpg" alt="drawing" width="500"/>
+<img src="https://free-images.com/or/6b6c/d_type_transparent_latch_0.jpg" alt="drawing" width="400"/>
 
 Now everything is cool. Metastable state is excluded. 
