@@ -13,4 +13,4 @@ S is the set-signal, R is the reset signal. Q - the output signal. `SR Latch` is
 
 So the new scheme `D Latch` was created.  
 
-![name](https://free-images.com/or/6b6c/d_type_transparent_latch_0.jpg = 250x)
+![name](https://free-images.com/or/6b6c/d_type_transparent_latch_0.jpg =250x)
