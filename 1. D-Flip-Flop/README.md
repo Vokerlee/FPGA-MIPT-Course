@@ -7,4 +7,4 @@ This is the first project of FPGA course, written in Verilog language.
 First of all, `SR Latch` is considered to understand how it works.
 In short, here is it:
 
-[name](https://images.slideplayer.com/23/6868677/slides/slide_21.jpg)
+![name](https://images.slideplayer.com/23/6868677/slides/slide_21.jpg)
