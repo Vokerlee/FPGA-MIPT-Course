@@ -1,0 +1,6 @@
+File-listing:
+code                      ->                       compiled_code
+00000000: mov r5, r15                              "0a 05 0f"
+00000003: cmp r17, 32453                           "3d 11 00 00 7e c5"
+00000009: add r3, r4, r5                           "01 03 04 05"
+0000000d: je 45                                    "08 00 00 00 2d"

@@ -1,0 +1,6 @@
+mov r5, r15
+
+cmp r17, 32453
+add r3, r4, r5
+
+je 45
