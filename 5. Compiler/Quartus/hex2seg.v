@@ -1,4 +1,5 @@
-module hex2seg(
+module hex2seg
+(
     input [3:0] hex, 
     output reg [6:0] seg
 );
