@@ -1,0 +1,51 @@
+// Sorted numbers
+		mov r1, 454
+		mov r2, 344
+		mov r3, 45234
+		mov r4, 4
+		mov r5, 0
+		mov r6, 1
+		mov r7, 2
+		mov r8, 3
+		mov [r5], r1
+        mov [r6], r2
+        mov [r7], r3
+        mov [r8], r4
+
+
+// Initialization
+        mov r11, 1      // shift in cycle
+        mov r1, 4       // amount of numbers
+		
+        mov r2, 0       // initial counter (i)
+		
+// loop1:
+        mov r3, 0       // initial counter (j)
+        
+// loop2:
+        mov r4, [r2]
+        mov r5, [r3]
+        cmp r5, r4
+        
+        ja 1 //loop2e
+        
+        // exchange [r2], [r3]
+        mov r20, [r2]
+		mov r19, [r3]
+        mov [r2], r19
+        mov [r2], r20
+        
+// loop2e:
+
+        add r3, r11, r3
+        cmp r1, r3
+        
+        ja 1 //loop1e
+        jump 1 //loop2
+        
+// loop1e:
+
+        add r2, r11, r2
+		
+        cmp r1, r2
+        ja 1 //loop1
