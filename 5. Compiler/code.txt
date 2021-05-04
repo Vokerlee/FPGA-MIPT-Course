@@ -1,45 +1,45 @@
-		mov [0], 23
-		mov [1], 23523
-		mov [2], 1
-		mov [3], 435
+        mov [0], 23
+        mov [1], 23523
+        mov [2], 1
+        mov [3], 435
 
 // Initialization
         mov r11, 1      // shift in cycle
         mov r1, 4       // amount of numbers
-		
+        
         mov r2, 0       // initial counter (i)
-		
+        
 // loop1:
         mov r3, 0       // initial counter (j)
-			        
+                    
 // loop2:
         mov r4, [r2]
         mov r5, [r3]
         cmp r5, r4
         
-        ja 9 			// loop2e
+        ja 9            // loop2e
         
         // exchange [r2], [r3]
         mov r20, [r2]
-		mov [r2], [r3]
+        mov [r2], [r3]
         mov [r2], r20
-		     
+             
 // loop2e:
 
         add r3, r11, r3
         cmp r1, r3
         
-        ja 2     		// loop1e
-        jump -21		// loop2
-			
+        ja 2            // loop1e
+        jump -21        // loop2
+            
 // loop1e:
 
         add r2, r11, r2
-		
+        
         cmp r1, r2
-        je 1     	  	// end
-		jmp -30			// loop1
-		
-//end:	
-		jmp 0
-		jmp -1
+        je 1            // end
+        jmp -30         // loop1
+        
+//end:  
+        jmp 0
+        jmp -1
