@@ -1,8 +1,7 @@
 module executor
 #(
     parameter address_size = 32,	// 32 bits
-    parameter word_size    = 32,	// 32 bits
-    parameter n_words      = 128
+    parameter word_size    = 32 	// 32 bits
 )
 (
     input wire clk,
@@ -12,7 +11,7 @@ module executor
     input wire [word_size * 3 - 1:0] cmd_args,
 
     output reg ready_flag = 0,                                  // (for fetcher) ready to execute next cmd flag
-    output reg jmp_flag = 0,                                    // (for fetcher)
+    output reg jmp_flag   = 0,                                  // (for fetcher)
 
     output wire [address_size - 1:0] new_exe_addr_offset,
     output wire [word_size * 4 - 1:0] dump
@@ -23,21 +22,21 @@ module executor
 
 // MOV CMD
     // WRITE
-    wire [31:0] write_num = cmd_args[63:32]; 
+    wire [word_size - 1:0] write_num = cmd_args[2 * word_size - 1:32]; 
     wire [07:0] write_reg = cmd_args[15:08];
     wire write_num_regime = cmd_args[16:16];
     wire write_mem_regime = cmd_args[17:17];
 
     // READ
-    wire [31:0] read_num = cmd_args[95:64]; /* read part number */
-    wire [07:0] read_reg = cmd_args[27:20]; /* read part register */
-    wire read_num_regime = cmd_args[28:28]; /* using number in read part */
-    wire read_mem_regime = cmd_args[29:29]; /* reading from memory */
+    wire [word_size - 1:0] read_num = cmd_args[95:64];
+    wire [07:0] read_reg = cmd_args[27:20];
+    wire read_num_regime = cmd_args[28:28];
+    wire read_mem_regime = cmd_args[29:29];
 
-    wire [01 : 00] read_regime;
-    assign read_regime [1] = read_mem_regime;
-    assign read_regime [0] = read_num_regime;
-		  
+    wire [1:0] read_regime;
+    assign read_regime[1] = read_mem_regime;
+    assign read_regime[0] = read_num_regime;
+
 // COMMANDS' FLAGS
     wire mov_cmd_flag = cmd_flags[5:5];
     wire add_cmd_flag = cmd_flags[4:4];
@@ -55,7 +54,7 @@ module executor
     reg [word_size - 1:0] registers[31:0];
 
 // RAM
-    reg [word_size - 1:0] memory[n_words - 1:0];
+    reg [word_size - 1:0] memory[15:0];
 
 // FOR DUMP
     assign dump [31:0]   = memory[0];
@@ -90,39 +89,7 @@ module executor
         reg_wr_id   = 0;
         mem_wr_addr = 0;
 
-        registers [0]  = 0;
-        registers [1]  = 0;
-        registers [2]  = 0;
-        registers [3]  = 0;
-        registers [4]  = 0;
-        registers [5]  = 0;
-        registers [6]  = 0;
-        registers [7]  = 0;
-        registers [8]  = 0;
-        registers [9]  = 0;
-        registers [10] = 0;
-        registers [11] = 0;
-        registers [12] = 0;
-        registers [13] = 0;
-        registers [14] = 0;
-        registers [15] = 0;
-        registers [16] = 0;
-        registers [17] = 0;
-        registers [18] = 0;
-        registers [19] = 0;
-        registers [20] = 0;
-        registers [21] = 0;
-        registers [22] = 0;
-        registers [23] = 0;
-        registers [24] = 0;
-        registers [25] = 0;
-        registers [26] = 0;
-        registers [27] = 0;
-        registers [28] = 0;
-        registers [29] = 0;
-        registers [30] = 0;
-        registers [31] = 0;
-
+        $readmemh ("memory.txt", registers);
         $readmemh ("memory.txt", memory);
     end
 
@@ -141,7 +108,7 @@ module executor
     always @(negedge clk)
     begin
         if (exe_flag)
-            jmp_flag <= jmp_cmd_flag || (je_cmd_flag && eq_flag) || (ja_cmd_flag && jmp_flag);
+            jmp_flag <= jmp_cmd_flag || (je_cmd_flag && eq_flag) || (ja_cmd_flag && a_flag);
         else
             jmp_flag <= 0;
 
@@ -182,19 +149,19 @@ module executor
     always @(negedge clk)
     begin
         if (exe_flag && (add_cmd_flag || mov_cmd_flag))
-            begin
-                if (add_cmd_flag)
-                    reg_wr_buffer <= registers[cmd_args[15:08]] + registers[cmd_args[23:16]];
-                if (mov_cmd_flag)
-                    if (~write_mem_regime)
-                    begin
-                        if (read_regime === 2'b00) reg_wr_buffer <= registers[read_reg];
-                        else if (read_regime === 2'b01) reg_wr_buffer <= read_num;
-                        else if (read_regime === 2'b10) reg_wr_buffer <= memory[registers[read_reg]]; 
-                        else if (read_regime === 2'b11) reg_wr_buffer <= memory[read_num];
-
-                    end
-            end
+        begin
+            if (add_cmd_flag)
+                reg_wr_buffer <= registers[cmd_args[15:08]] + registers[cmd_args[23:16]];
+                
+            if (mov_cmd_flag)
+                if (~write_mem_regime)
+                begin
+                    if (read_regime === 2'b00) reg_wr_buffer <= registers[read_reg];
+                    else if (read_regime === 2'b01) reg_wr_buffer <= read_num;
+                    else if (read_regime === 2'b10) reg_wr_buffer <= memory[registers[read_reg]]; 
+                    else if (read_regime === 2'b11) reg_wr_buffer <= memory[read_num];
+                end
+        end
     end
 
     always @(negedge clk)
@@ -202,7 +169,7 @@ module executor
         if (exe_flag && (add_cmd_flag || mov_cmd_flag))
         begin
             if (add_cmd_flag)
-                reg_wr_id <= cmd_args[31:24];
+                reg_wr_id <= cmd_args [31 : 24];
             if (mov_cmd_flag && ~write_mem_regime)
                 reg_wr_id <= write_reg;
         end
@@ -214,10 +181,14 @@ module executor
         begin
             if (write_mem_regime)
             begin
-                if (read_regime === 2'b00) mem_wr_buffer <= registers[read_reg];
-                else if (read_regime === 2'b01) mem_wr_buffer <= read_num;
-                else if (read_regime === 2'b10) mem_wr_buffer <= memory[registers[read_reg]];
-                else if (read_regime === 2'b11) mem_wr_buffer <= memory[read_num];
+                if (read_regime === 2'b00)     
+                    mem_wr_buffer <= registers [read_reg];
+                else if (read_regime === 2'b01)
+                    mem_wr_buffer <= read_num;
+                else if (read_regime === 2'b10) 
+                    mem_wr_buffer <= memory  [registers [read_reg]];
+                else if (read_regime === 2'b11)
+                    mem_wr_buffer <= memory  [read_num];
             end
         end
     end
@@ -231,9 +202,22 @@ module executor
                 if (write_num_regime)
                     mem_wr_addr <= write_num;
                 else
-                    mem_wr_addr <= registers[write_reg];
+                    mem_wr_addr <= registers [write_reg];
             end
         end
+    end
+
+    // Reg & mem write
+    always @(negedge clk)
+    begin
+        if (mem_write_flag)
+            memory [mem_wr_addr] <= mem_wr_buffer;
+    end
+
+    always @(negedge clk)
+    begin
+        if (reg_write_flag)
+            registers [reg_wr_id] <= reg_wr_buffer;
     end
 
     // Update mem and reg write flags
@@ -252,18 +236,6 @@ module executor
         else
             mem_write_flag <= 0;
     end
-
-    // Reg & mem write
-    always @(negedge clk)
-    begin
-        if (mem_write_flag)
-            memory[mem_wr_addr] <= mem_wr_buffer;
-    end
-
-    always @(negedge clk)
-    begin
-        if (reg_write_flag)
-            registers[reg_wr_id] <= reg_wr_buffer;
-    end
+    
 
 endmodule

@@ -1,5 +1,4 @@
 `define UPDATER 12
-`define COUNTER 24
 
 module top
 (
@@ -11,17 +10,15 @@ module top
     wire ready_flag;
     wire jmp_flag;
     wire [1:0] command_size;
-    
 
     wire [31:00] new_exe_addr;
-
     wire [95:0] cmd_args;
     wire [95:0] cmd_args_reversed;
-
-    genvar i;
 	 
+	 genvar i;
+
     generate
-	    for (i = 0; i < 3; i = i + 1)
+        for (i = 0; i < 3; i = i + 1)
         begin : reverseGen
             assign cmd_args_reversed[07 + i * 32 : 00 + i * 32] = cmd_args[31 + i * 32 : 24 + i * 32];
             assign cmd_args_reversed[15 + i * 32 : 08 + i * 32] = cmd_args[23 + i * 32 : 16 + i * 32];
@@ -35,29 +32,22 @@ module top
     wire exe_flag;
 
     wire [127:0] dump;
-	 
+
+/* testable modules */
+
+    executor executor (.clk(CLK), .exe_flag(exe_flag), .cmd_flags(cmd_flags), .cmd_args(cmd_args_reversed), 
+                       .ready_flag(ready_flag), .jmp_flag(jmp_flag), .new_exe_addr_offset(new_exe_addr), .dump (dump));
+
     fetcher ftchr (.clk(CLK), .prev_cmd_size(command_size), .ready_flag(ready_flag),
-                     .jmp_flag(jmp_flag), .new_exe_addr_offset(new_exe_addr),
-                     .cmd_arguments(cmd_args), .exe_flag(exe_flag));
+                   .jmp_flag(jmp_flag), .new_exe_addr_offset(new_exe_addr),
+                   .cmd_arguments(cmd_args), .exe_flag(exe_flag));
 
-    executor exctr (.clk (CLK), .exe_flag (exe_flag), .cmd_flags(cmd_flags), .cmd_args(cmd_args_reverse), .ready_flag(ready_flag),
-                    .jmp_flag (jmp_flag), .new_exe_addr_offset (new_exe_addr), .dump (dump));
-
-    decoder dcdr (.cmd_code (cmd_args_reversed[7:0]), .cmd_size (command_size), .cmd_flags (cmd_flags));
-
-
+    decoder dcdr (.cmd_code(cmd_args_reversed[7:0]), .cmd_size(command_size), .cmd_flags(cmd_flags));
+	 
 // Clock initialization
 
-    wire timer_counter;
     wire timer_updater;
-	 
-    time_counter #(`COUNTER) Counter( .clk(CLK), .timer(timer_counter));  // link (system timer -> time_counter) for seconds counter
     time_counter #(`UPDATER) Updater( .clk(CLK), .timer(timer_updater));  // link (system timer -> time_updater) for seconds counter
-	 
-// Simple counter initialization
-
-    reg [15:0] num_counter = 0;
-    hex_counter Cnthex1( .clk(timer_counter), .hex(num_counter) );    // launch (timer -> hex_counter)
 						
 // 7Segment data-registers initialization
 
