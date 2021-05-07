@@ -1,5 +1,5 @@
-`define MOV_CODE 77
-`define ADD_CODE 65
+`define MOV_CODE 11
+`define ADD_CODE 18
 `define CMP_CODE 67
 
 `define JMP_CODE 74
