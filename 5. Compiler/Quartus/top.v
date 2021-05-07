@@ -15,7 +15,7 @@ module top
     wire [95:0] cmd_args;
     wire [95:0] cmd_args_reversed;
 	 
-	 genvar i;
+    genvar i;
 
     generate
         for (i = 0; i < 3; i = i + 1)
